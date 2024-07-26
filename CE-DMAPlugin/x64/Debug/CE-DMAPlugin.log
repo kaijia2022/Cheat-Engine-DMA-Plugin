@@ -1,0 +1,8 @@
+﻿  CE-DMAPlugin.c
+  Memory.c
+D:\CE-DMAPlugin\Memory.c(124,13): warning C4312: 'type cast': conversion from 'DWORD' to 'HANDLE' of greater size
+D:\CE-DMAPlugin\Memory.c(139,37): warning C4311: 'type cast': pointer truncation from 'HANDLE' to 'DWORD'
+D:\CE-DMAPlugin\Memory.c(156,36): warning C4311: 'type cast': pointer truncation from 'HANDLE' to 'DWORD'
+  Generating Code...
+     Creating library D:\CE-DMAPlugin\x64\Debug\CE-DMAPlugin.lib and object D:\CE-DMAPlugin\x64\Debug\CE-DMAPlugin.exp
+  CE-DMAPlugin.vcxproj -> D:\CE-DMAPlugin\x64\Debug\CE-DMAPlugin.dll

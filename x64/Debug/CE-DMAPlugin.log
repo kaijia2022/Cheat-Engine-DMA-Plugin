@@ -1,0 +1,3 @@
+﻿  bla.cpp
+  CE-DMAPlugin.c
+LINK : fatal error LNK1104: cannot open file 'lua54.lib'
