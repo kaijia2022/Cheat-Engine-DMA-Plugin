@@ -148,7 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CE-DMAPlugin.c" />
-    <ClCompile Include="Memory.c" />
+    <ClCompile Include="hFunctions.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\cepluginsdk.h" />
@@ -159,7 +159,7 @@
     <ClInclude Include="include\luaconf.h" />
     <ClInclude Include="include\lualib.h" />
     <ClInclude Include="include\vmmdll.h" />
-    <ClInclude Include="Memory.h" />
+    <ClInclude Include="hFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CE-DMAPlugin.def" />

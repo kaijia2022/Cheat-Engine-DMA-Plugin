@@ -1,1 +1,0 @@
-7FF7CBD26A3E - 89 04 0A   - mov [rdx+rcx],eax

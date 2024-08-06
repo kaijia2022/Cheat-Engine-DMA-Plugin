@@ -18,7 +18,7 @@
     <ClCompile Include="CE-DMAPlugin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Memory.c">
+    <ClCompile Include="hFunctions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="include\leechcore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Memory.h">
+    <ClInclude Include="hFunctions.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

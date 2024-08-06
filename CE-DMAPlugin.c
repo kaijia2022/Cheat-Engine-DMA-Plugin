@@ -8,7 +8,7 @@
 #include <windows.h>
 #include <stdio.h>
 #include "cepluginsdk.h"
-#include "memory.h"
+#include "hFunctions.h"
 
 int selfid;
 int memorybrowserpluginid=-1; //initialize it to -1 to indicate failure (used by the DisablePlugin routine)
@@ -19,6 +19,17 @@ int PointerReassignmentPluginID=-1;
 int MainMenuPluginID=-1;
 
 ExportedFunctions Exported;
+
+PVOID pOpenProcess;
+CEP_READPROCESSMEMORY pReadProcessMemory;
+PVOID pWriteProcessMemory;
+PVOID pVirtualQueryEx;
+
+PVOID pCreateToolhelp32Snapshot;
+PVOID pProcess32First;
+PVOID pProcess32Next;
+PVOID pModule32First;
+PVOID pModule32Next;
 
 
 
@@ -43,7 +54,44 @@ BOOL __stdcall CEPlugin_GetVersion(PPluginVersion pv, int sizeofpluginversion)
 	return 1;
 */
 
+void hookFunctions() {
 
+	pOpenProcess = *(PVOID*)(Exported.OpenProcess);
+	pReadProcessMemory = *(CEP_READPROCESSMEMORY*)Exported.ReadProcessMemory;
+	pWriteProcessMemory = *(PVOID*)Exported.WriteProcessMemory;
+	pVirtualQueryEx = *(PVOID*)Exported.VirtualQueryEx;
+
+	pCreateToolhelp32Snapshot = *(PVOID*)Exported.CreateToolhelp32Snapshot;
+	pProcess32First = *(PVOID*)Exported.Process32First;
+	pProcess32Next = *(PVOID*)Exported.Process32Next;
+	pModule32First = *(PVOID*)Exported.Module32First;
+	pModule32Next = *(PVOID*)Exported.Module32Next;
+
+
+	*(PVOID*)Exported.OpenProcess = (PVOID)&hOpenProcess;
+	*(CEP_READPROCESSMEMORY*)Exported.ReadProcessMemory = (CEP_READPROCESSMEMORY)&hReadProcessMemory;
+	*(PVOID*)Exported.WriteProcessMemory = (PVOID)&hWriteProcessMemory;
+	*(PVOID*)Exported.VirtualQueryEx = (PVOID)&hVirtualQueryEx;
+
+	*(PVOID*)Exported.CreateToolhelp32Snapshot = (PVOID)&hCreateToolhelp32Snapshot;
+	*(PVOID*)Exported.Process32First = (PVOID)&hProcess32First;
+	*(PVOID*)Exported.Process32Next = (PVOID)&hProcess32Next;
+	*(PVOID*)Exported.Module32First = (PVOID)&hModule32First;
+	*(PVOID*)Exported.Module32Next = (PVOID)&hModule32Next;
+}
+
+void unhookFunctions() {
+	*(PVOID*)(Exported.OpenProcess) = pOpenProcess;
+	*(CEP_READPROCESSMEMORY*)(Exported.ReadProcessMemory) = pReadProcessMemory;
+	*(PVOID*)(Exported.WriteProcessMemory) = pWriteProcessMemory;
+	*(PVOID*)(Exported.VirtualQueryEx) = pVirtualQueryEx;
+
+	*(PVOID*)(Exported.CreateToolhelp32Snapshot) = pCreateToolhelp32Snapshot;
+	*(PVOID*)(Exported.Process32First) = pProcess32First;
+	*(PVOID*)(Exported.Process32Next) = pProcess32Next;
+	*(PVOID*)(Exported.Module32First) = pModule32First;
+	*(PVOID*)(Exported.Module32Next) = pModule32Next;
+}
 BOOL __stdcall CEPlugin_InitializePlugin(PExportedFunctions ef , int pluginid)
 {
 	MAINMENUPLUGIN_INIT init0;
@@ -52,44 +100,12 @@ BOOL __stdcall CEPlugin_InitializePlugin(PExportedFunctions ef , int pluginid)
 
 	selfid=pluginid;
 
-	AllocConsole();
-	freopen("conin$", "r", stdin);
-	freopen("conout$", "w", stdout);
-	freopen("conout$", "w", stderr);
-
 	//copy the EF list to Exported
-	Exported=*ef; //Exported is defined in the .h
-	if (Exported.sizeofExportedFunctions!=sizeof(Exported))
+	Exported = *ef; //Exported is defined in the .h
+	if (Exported.sizeofExportedFunctions != sizeof(Exported))
 		return FALSE;
 
-	//auto pOpenedProcessID = ef->OpenedProcessID;
-	//auto pOpenedProcessHandle = ef->OpenedProcessHandle;
-
-	PVOID pOpenProcess= ef->OpenProcess;
-	CEP_READPROCESSMEMORY pReadProcessMemory = ef->ReadProcessMemory;
-	PVOID pWriteProcessMemory = ef->WriteProcessMemory;
-	PVOID pVirtualQueryEx = ef->VirtualQueryEx;
-
-	PVOID pCreateToolhelp32Snapshot = ef->CreateToolhelp32Snapshot;
-	PVOID pProcess32First = ef->Process32First;
-	PVOID pProcess32Next = ef->Process32Next;
-	PVOID pModule32First = ef->Module32First;
-	PVOID pModule32Next = ef->Module32Next;
-
-
-	//*(PULONG)pOpenedProcessHandle = (ULONG)*pOpenedProcessID;
-	
-	*(uintptr_t*)pOpenProcess = (uintptr_t)&hOpenProcess;
-	*(uintptr_t*)pReadProcessMemory = (uintptr_t)&hReadProcessMemory;
-	*(uintptr_t*)pWriteProcessMemory = (uintptr_t)&hWriteProcessMemory;
-	*(uintptr_t*)pVirtualQueryEx = (uintptr_t) &hVirtualQueryEx;
-
-	*(uintptr_t*)pCreateToolhelp32Snapshot = (uintptr_t)&hCreateToolhelp32Snapshot;
-	*(uintptr_t*)pProcess32First = (uintptr_t)&hProcess32First;
-	*(uintptr_t*)pProcess32Next = (uintptr_t)&hProcess32Next;
-	*(uintptr_t*)pModule32First = (uintptr_t)&hModule32First;
-	*(uintptr_t*)pModule32Next = (uintptr_t)&hModule32Next;
-	
+	hookFunctions();
 
 
 	init0.name="DMAPlugin -- kaijia2024";
@@ -123,10 +139,23 @@ BOOL __stdcall CEPlugin_DisablePlugin(void)
 	pVadMap = NULL;
 
 	VMMDLL_Close(hVMM);
-	
+	hVMM = NULL;
+
+	unhookFunctions();
+
 	//clean up memory you might have allocated
 	MessageBoxA(0, "disabled plugin", "DMAPlugin", MB_OK);
 
 	return TRUE;
 }
 
+
+//AllocConsole();
+//freopen("conin$", "r", stdin);
+//freopen("conout$", "w", stdout);
+//freopen("conout$", "w", stderr);
+
+//fclose(stdin);
+//fclose(stdout);
+//fclose(stderr);
+//FreeConsole();	
