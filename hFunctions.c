@@ -56,7 +56,6 @@ DWORD VadMap_Protection(_In_ PVMMDLL_MAP_VADENTRY pVad)
     sz[5] = ((vl == 5) || (vl == 7)) ? 'c' : '-';                               // COPY ON WRITE
     if (sz[1] != '-' && sz[2] == '-' && sz[3] == '-' && sz[4] == '-' && sz[5] == '-') { sz[1] = '-'; }
 
-    //printf("Section Protection raw: %s\n", sz);
 
     if (sz[2] == 'r' && sz[4] == 'x') { szVadProtection |= PAGE_EXECUTE_READ; }
     if (sz[4] == 'x' && sz[5] == 'c') { szVadProtection |= PAGE_EXECUTE_WRITECOPY; }
@@ -68,7 +67,7 @@ DWORD VadMap_Protection(_In_ PVMMDLL_MAP_VADENTRY pVad)
     if (sz[1] == 'n') { szVadProtection |= PAGE_NOCACHE; }
     if (sz[1] == 'm') { szVadProtection |= PAGE_WRITECOMBINE; }
     if (sz[2] == 'r' && sz[0] == '-' && sz[1] == '-' && sz[3] == '-' && sz[4] == '-' && sz[5] == '-') { szVadProtection |= PAGE_READONLY; }
-    //printf("Section Protection: %lu\n", szVadProtection);
+
     return szVadProtection;
 }
 
@@ -210,14 +209,12 @@ DWORD __stdcall hVirtualQueryEx(HANDLE hProcess, LPCVOID lpAddress, PMEMORY_BASI
         vadIdx = 0;
         vadMapInitialized = TRUE;
         if (!validVadMap) { return 0; }
-        printf("VadMap Initialized with %lu Entries\n", pVadMap->cMap);
     }
     if ((QWORD)lpAddress < previousAoQ) {
         VMMDLL_MemFree(pVadMap); pVadMap = NULL;
         BOOL validVadMap = updateVadMap();
         vadIdx = 0;
         if (!validVadMap) { return 0; }
-        printf("VadMap updated with %lu Entries\n", pVadMap->cMap);
     }
     previousAoQ = (QWORD)lpAddress;
 

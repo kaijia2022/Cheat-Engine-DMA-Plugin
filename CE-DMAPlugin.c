@@ -110,17 +110,13 @@ BOOL __stdcall CEPlugin_InitializePlugin(PExportedFunctions ef , int pluginid)
 
 	init0.name="DMAPlugin -- kaijia2024";
 	init0.callbackroutine=mainmenuplugin;
-	//init0.shortcut="Ctrl+R";
+
 	MainMenuPluginID=Exported.RegisterFunction(pluginid, ptMainMenu, &init0); //adds a plugin menu item to the memory view
 	if ( MainMenuPluginID == -1 )
 	{
 		Exported.ShowMessage("Failure to register DMAPlugin");
 		return FALSE;
 	}	
-
-	//lua_State *lua_state=ef->GetLuaState();
-
-	//lua_register(lua_state, "DMAPlugin -- kaijia2024", lua_pluginExample);
 
 	Exported.ShowMessage("The \"DMA\" plugin got enabled");
 	
@@ -148,14 +144,3 @@ BOOL __stdcall CEPlugin_DisablePlugin(void)
 
 	return TRUE;
 }
-
-
-//AllocConsole();
-//freopen("conin$", "r", stdin);
-//freopen("conout$", "w", stdout);
-//freopen("conout$", "w", stderr);
-
-//fclose(stdin);
-//fclose(stdout);
-//fclose(stderr);
-//FreeConsole();	
