@@ -29,7 +29,7 @@ const char* commonProcesses[] = {
  */
 DWORD VadMap_State(_In_ PVMMDLL_MAP_VADENTRY pVad)
 {
-    if (pVad->MemCommit) {
+    if (pVad->CommitCharge > 0) {
         return MEM_COMMIT;
     }
     else {
@@ -179,7 +179,7 @@ BOOL GetNextVaStartAddr() {
     PVMMDLL_MAP_VADENTRY pVadMapEntry;
     for (unsigned int i = vadIdx; i < pVadMap->cMap; i++) {
         pVadMapEntry = &pVadMap->pMap[i];
-        if (pVadMapEntry->MemCommit) {
+        if (pVadMapEntry->CommitCharge > 0) {
             nextVaStart = pVadMapEntry->vaStart;
             vadIdx = i;
             return 1;
@@ -238,7 +238,7 @@ DWORD __stdcall hVirtualQueryEx(HANDLE hProcess, LPCVOID lpAddress, PMEMORY_BASI
 
     for (unsigned int i = vadIdx; i < pVadMap->cMap; i++) {
         pVadMapEntry = &pVadMap->pMap[i];
-        if (!pVadMapEntry->MemCommit) {
+        if (!pVadMapEntry->CommitCharge) {
             continue;
         }
         if ((ULONG64)lpAddress >= pVadMapEntry->vaStart && (ULONG64)lpAddress <= pVadMapEntry->vaEnd) {

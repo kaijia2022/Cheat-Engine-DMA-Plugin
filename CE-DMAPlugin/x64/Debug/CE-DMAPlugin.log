@@ -1,8 +1,8 @@
 ﻿  CE-DMAPlugin.c
   hFunctions.c
-D:\CE-DMAPlugin\hFunctions.c(123,13): warning C4312: 'type cast': conversion from 'DWORD' to 'HANDLE' of greater size
-D:\CE-DMAPlugin\hFunctions.c(138,37): warning C4311: 'type cast': pointer truncation from 'HANDLE' to 'DWORD'
-D:\CE-DMAPlugin\hFunctions.c(159,36): warning C4311: 'type cast': pointer truncation from 'HANDLE' to 'DWORD'
+D:\Cheat-Engine-DMA-Plugin\hFunctions.c(122,13): warning C4312: 'type cast': conversion from 'DWORD' to 'HANDLE' of greater size
+D:\Cheat-Engine-DMA-Plugin\hFunctions.c(137,37): warning C4311: 'type cast': pointer truncation from 'HANDLE' to 'DWORD'
+D:\Cheat-Engine-DMA-Plugin\hFunctions.c(158,36): warning C4311: 'type cast': pointer truncation from 'HANDLE' to 'DWORD'
   Generating Code...
-     Creating library D:\CE-DMAPlugin\x64\Debug\CE-DMAPlugin.lib and object D:\CE-DMAPlugin\x64\Debug\CE-DMAPlugin.exp
-  CE-DMAPlugin.vcxproj -> D:\CE-DMAPlugin\x64\Debug\CE-DMAPlugin.dll
+     Creating library D:\Cheat-Engine-DMA-Plugin\x64\Debug\CE-DMAPlugin.lib and object D:\Cheat-Engine-DMA-Plugin\x64\Debug\CE-DMAPlugin.exp
+  CE-DMAPlugin.vcxproj -> D:\Cheat-Engine-DMA-Plugin\x64\Debug\CE-DMAPlugin.dll
