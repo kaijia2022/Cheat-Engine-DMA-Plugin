@@ -58,7 +58,7 @@ BOOL __stdcall CEPlugin_GetVersion(PPluginVersion pv, int sizeofpluginversion)
 void hookFunctions() {
 
 	pOpenProcess = *(PVOID*)Exported.OpenProcess;
-	pIsWow64Process = Exported.IsWow64Process;
+	pIsWow64Process = *(PVOID*)Exported.IsWow64Process;
 	pReadProcessMemory = *(CEP_READPROCESSMEMORY*)Exported.ReadProcessMemory;
 	pWriteProcessMemory = *(PVOID*)Exported.WriteProcessMemory;
 	pVirtualQueryEx = *(PVOID*)Exported.VirtualQueryEx;
@@ -70,7 +70,7 @@ void hookFunctions() {
 	pModule32Next = *(PVOID*)Exported.Module32Next;
 
 	*(PVOID*)Exported.OpenProcess = (PVOID)&hOpenProcess;
-	Exported.IsWow64Process = &hIsWow64Process;
+	*(PVOID*)Exported.IsWow64Process = (PVOID)&hIsWow64Process;
 	*(CEP_READPROCESSMEMORY*)Exported.ReadProcessMemory = (CEP_READPROCESSMEMORY)&hReadProcessMemory;
 	*(PVOID*)Exported.WriteProcessMemory = (PVOID)&hWriteProcessMemory;
 	*(PVOID*)Exported.VirtualQueryEx = (PVOID)&hVirtualQueryEx;
@@ -84,7 +84,7 @@ void hookFunctions() {
 
 void unhookFunctions() {
 	*(PVOID*)Exported.OpenProcess = pOpenProcess;
-	Exported.IsWow64Process = pIsWow64Process;
+	*(PVOID*)Exported.IsWow64Process = pIsWow64Process;
 	*(CEP_READPROCESSMEMORY*)Exported.ReadProcessMemory = pReadProcessMemory;
 	*(PVOID*)Exported.WriteProcessMemory = pWriteProcessMemory;
 	*(PVOID*)Exported.VirtualQueryEx = pVirtualQueryEx;
