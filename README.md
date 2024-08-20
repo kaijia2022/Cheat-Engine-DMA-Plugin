@@ -8,7 +8,7 @@ DMA Plugin for Cheat Engine.
 - Module Enumerations
 - Memory Scanning
 - Memory Read
-- Memory Write (not tested but should work, however not recommended)
+- Memory Write (works, but not recommended to use)
 - Pointer Map Generation
 - Pointer Scanning
 
