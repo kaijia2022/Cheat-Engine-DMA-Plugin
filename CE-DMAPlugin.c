@@ -1,5 +1,3 @@
-// example-c.cpp : Defines the entry point for the DLL application.
-//
 #define _CRT_SECURE_NO_WARNINGS
 //#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 // Windows Header Files:
@@ -44,7 +42,7 @@ void __stdcall mainmenuplugin(void)
 BOOL __stdcall CEPlugin_GetVersion(PPluginVersion pv, int sizeofpluginversion)
 {
 	pv->version = CESDK_VERSION;
-	pv->pluginname = "DMAPlugin by Kaijia2024 v0.9 (SDK version 6: 5.0+)"; //exact strings like this are pointers to the string in the dll, so workable
+	pv->pluginname = "DMAPlugin by Kaijia2024 v1.0.0 (Require Customized SDK; version 6: 5.0+)"; //exact strings like this are pointers to the string in the dll, so workable
 	return TRUE;
 }
 
@@ -142,7 +140,6 @@ BOOL __stdcall CEPlugin_DisablePlugin(void)
 
 	unhookFunctions();
 
-	//clean up memory you might have allocated
 	MessageBoxA(0, "disabled plugin", "DMAPlugin", MB_OK);
 
 	return TRUE;

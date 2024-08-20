@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\Cheat-Engine-DMA-Plugin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|D:\\Cheat-Engine-DMA-Plugin\\CE-DMAPlugin.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|solutionrelative:CE-DMAPlugin.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|D:\\Cheat-Engine-DMA-Plugin\\include\\cepluginsdk.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|solutionrelative:include\\cepluginsdk.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|D:\\Cheat-Engine-DMA-Plugin\\hFunctions.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|solutionrelative:hFunctions.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|D:\\Cheat-Engine-DMA-Plugin\\CE-DMAPlugin.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|solutionrelative:CE-DMAPlugin.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|D:\\Cheat-Engine-DMA-Plugin\\hFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|solutionrelative:hFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|D:\\Cheat-Engine-DMA-Plugin\\include\\cepluginsdk.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A659586-B48D-4B53-B6E6-20D742A1A5A8}|CE-DMAPlugin.vcxproj|solutionrelative:include\\cepluginsdk.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "cepluginsdk.h",
               "DocumentMoniker": "D:\\Cheat-Engine-DMA-Plugin\\include\\cepluginsdk.h",
               "RelativeDocumentMoniker": "include\\cepluginsdk.h",
@@ -42,40 +42,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "hFunctions.h",
               "DocumentMoniker": "D:\\Cheat-Engine-DMA-Plugin\\hFunctions.h",
               "RelativeDocumentMoniker": "hFunctions.h",
               "ToolTip": "D:\\Cheat-Engine-DMA-Plugin\\hFunctions.h",
               "RelativeToolTip": "hFunctions.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADcAAAA1AAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAADcAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-08-05T22:27:13.514Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "hFunctions.c",
               "DocumentMoniker": "D:\\Cheat-Engine-DMA-Plugin\\hFunctions.c",
               "RelativeDocumentMoniker": "hFunctions.c",
               "ToolTip": "D:\\Cheat-Engine-DMA-Plugin\\hFunctions.c",
               "RelativeToolTip": "hFunctions.c",
-              "ViewState": "AQIAAGMAAAAAAAAAAAAAAJ4AAAAzAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAIIAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-08-04T16:06:21.709Z"
+              "WhenOpened": "2024-08-04T16:06:21.709Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CE-DMAPlugin.c",
               "DocumentMoniker": "D:\\Cheat-Engine-DMA-Plugin\\CE-DMAPlugin.c",
               "RelativeDocumentMoniker": "CE-DMAPlugin.c",
               "ToolTip": "D:\\Cheat-Engine-DMA-Plugin\\CE-DMAPlugin.c",
               "RelativeToolTip": "CE-DMAPlugin.c",
-              "ViewState": "AQIAACEAAAAAAAAAAAAAAG0AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAI0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2024-07-31T18:37:23.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-31T18:37:23.222Z"
             }
           ]
         }

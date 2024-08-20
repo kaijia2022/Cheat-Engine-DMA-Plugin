@@ -125,11 +125,14 @@ HANDLE __stdcall hOpenProcess(DWORD dwDesirteedAccess, BOOL bInheritHandle, DWOR
 /**
  * @brief   check if the selected process is 64 bit
  * @param   hProcess - process handle(dwProcessId).
- * @return  TRUE if 64 bit FALSE otherwise.
+ * @param   isWow64, set to true if the process is wow 64, false otherwise.
+ * @return  Always returns true, assumes you are using Windows.
  */
-BOOL __stdcall hIsWow64Process(HANDLE hProcess)
+BOOL __stdcall hIsWow64Process(HANDLE hProcess, BOOL isWow64)
 {
-    //isWow64 = FALSE;
+    PVMMDLL_PROCESS_INFORMATION pProcInfoEntry;
+    pProcInfoEntry = &pProcInfoAll[*(unsigned int*)hProcess];
+    isWow64 = pProcInfoEntry->win.fWow64;
     return TRUE;
 }
 
