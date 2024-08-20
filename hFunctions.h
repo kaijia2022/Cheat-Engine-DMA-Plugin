@@ -53,6 +53,7 @@ extern PVMMDLL_MAP_VAD pVadMap;
 
 
 extern HANDLE __stdcall hOpenProcess(DWORD dwDesirteedAccess,  BOOL bInheritHandle, DWORD dwProcessId);
+extern BOOL __stdcall hIsWow64Process(HANDLE hProcess);
 extern BOOL __stdcall hReadProcessMemory(HANDLE hProcess, LPCVOID lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize, SIZE_T* lpNumberOfBytesRead);
 extern BOOL _stdcall hWriteProcessMemory(HANDLE hProcess, LPCVOID lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize, SIZE_T* lpNumberOfBytesWritten);
 extern DWORD __stdcall hVirtualQueryEx(HANDLE hProcess, LPCVOID lpAddress, PMEMORY_BASIC_INFORMATION lpBuffer, DWORD dwLength);

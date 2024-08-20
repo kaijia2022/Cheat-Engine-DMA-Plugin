@@ -437,6 +437,7 @@ type TExportedFunctions = record
   Module32Next            :ppointer;
   Heap32ListFirst         :ppointer;
   Heap32ListNext          :ppointer;
+  IsWow64Process          :ppointer;
 
   //advanced for delphi 7 enterprise dll programmers only
   mainform                :pointer;

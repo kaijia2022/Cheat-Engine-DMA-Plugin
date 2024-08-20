@@ -3,6 +3,10 @@
  Updated July 4, 2017
 
  v5.0.0
+
+ kaijia2024: added Is64BitProcess to the exported functions (August 2024)
+
+ beta v6.1.0
 */
 #ifndef CEPLUGINSDK_H
 #define CEPLUGINSDK_H
@@ -360,6 +364,7 @@ typedef struct _ExportedFunctions
   PVOID Module32Next;            	//   ...
   PVOID Heap32ListFirst;         	//   ...
   PVOID Heap32ListNext;          	//   ...
+  PVOID IsWow64Process;
   //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   //advanced for delphi 7 enterprise dll programmers only

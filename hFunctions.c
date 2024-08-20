@@ -123,6 +123,17 @@ HANDLE __stdcall hOpenProcess(DWORD dwDesirteedAccess, BOOL bInheritHandle, DWOR
 }
 
 /**
+ * @brief   check if the selected process is 64 bit
+ * @param   hProcess - process handle(dwProcessId).
+ * @return  TRUE if 64 bit FALSE otherwise.
+ */
+BOOL __stdcall hIsWow64Process(HANDLE hProcess)
+{
+    //isWow64 = FALSE;
+    return TRUE;
+}
+
+/**
  * @brief   Read virtual memory from a process
  * @param   hProcess - process handle(dwProcessId).
  * @param   lpBaseAddress  - A pointer to the base address in the specified process from which to read.

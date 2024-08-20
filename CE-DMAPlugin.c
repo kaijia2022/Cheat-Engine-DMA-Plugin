@@ -21,6 +21,7 @@ int MainMenuPluginID=-1;
 ExportedFunctions Exported;
 
 PVOID pOpenProcess;
+PVOID pIsWow64Process;
 CEP_READPROCESSMEMORY pReadProcessMemory;
 PVOID pWriteProcessMemory;
 PVOID pVirtualQueryEx;
@@ -56,7 +57,8 @@ BOOL __stdcall CEPlugin_GetVersion(PPluginVersion pv, int sizeofpluginversion)
 
 void hookFunctions() {
 
-	pOpenProcess = *(PVOID*)(Exported.OpenProcess);
+	pOpenProcess = *(PVOID*)Exported.OpenProcess;
+	pIsWow64Process = Exported.IsWow64Process;
 	pReadProcessMemory = *(CEP_READPROCESSMEMORY*)Exported.ReadProcessMemory;
 	pWriteProcessMemory = *(PVOID*)Exported.WriteProcessMemory;
 	pVirtualQueryEx = *(PVOID*)Exported.VirtualQueryEx;
@@ -67,8 +69,8 @@ void hookFunctions() {
 	pModule32First = *(PVOID*)Exported.Module32First;
 	pModule32Next = *(PVOID*)Exported.Module32Next;
 
-
 	*(PVOID*)Exported.OpenProcess = (PVOID)&hOpenProcess;
+	Exported.IsWow64Process = &hIsWow64Process;
 	*(CEP_READPROCESSMEMORY*)Exported.ReadProcessMemory = (CEP_READPROCESSMEMORY)&hReadProcessMemory;
 	*(PVOID*)Exported.WriteProcessMemory = (PVOID)&hWriteProcessMemory;
 	*(PVOID*)Exported.VirtualQueryEx = (PVOID)&hVirtualQueryEx;
@@ -81,16 +83,17 @@ void hookFunctions() {
 }
 
 void unhookFunctions() {
-	*(PVOID*)(Exported.OpenProcess) = pOpenProcess;
-	*(CEP_READPROCESSMEMORY*)(Exported.ReadProcessMemory) = pReadProcessMemory;
-	*(PVOID*)(Exported.WriteProcessMemory) = pWriteProcessMemory;
-	*(PVOID*)(Exported.VirtualQueryEx) = pVirtualQueryEx;
+	*(PVOID*)Exported.OpenProcess = pOpenProcess;
+	Exported.IsWow64Process = pIsWow64Process;
+	*(CEP_READPROCESSMEMORY*)Exported.ReadProcessMemory = pReadProcessMemory;
+	*(PVOID*)Exported.WriteProcessMemory = pWriteProcessMemory;
+	*(PVOID*)Exported.VirtualQueryEx = pVirtualQueryEx;
 
-	*(PVOID*)(Exported.CreateToolhelp32Snapshot) = pCreateToolhelp32Snapshot;
-	*(PVOID*)(Exported.Process32First) = pProcess32First;
-	*(PVOID*)(Exported.Process32Next) = pProcess32Next;
-	*(PVOID*)(Exported.Module32First) = pModule32First;
-	*(PVOID*)(Exported.Module32Next) = pModule32Next;
+	*(PVOID*)Exported.CreateToolhelp32Snapshot = pCreateToolhelp32Snapshot;
+	*(PVOID*)Exported.Process32First = pProcess32First;
+	*(PVOID*)Exported.Process32Next = pProcess32Next;
+	*(PVOID*)Exported.Module32First = pModule32First;
+	*(PVOID*)Exported.Module32Next = pModule32Next;
 }
 BOOL __stdcall CEPlugin_InitializePlugin(PExportedFunctions ef , int pluginid)
 {
