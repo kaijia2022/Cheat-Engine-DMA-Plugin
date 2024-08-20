@@ -1,11 +1,1 @@
-﻿  CE-DMAPlugin.c
-  hFunctions.c
-D:\Cheat-Engine-DMA-Plugin\hFunctions.c(122,13): warning C4312: 'type cast': conversion from 'DWORD' to 'HANDLE' of greater size
-D:\Cheat-Engine-DMA-Plugin\hFunctions.c(148,37): warning C4311: 'type cast': pointer truncation from 'HANDLE' to 'DWORD'
-D:\Cheat-Engine-DMA-Plugin\hFunctions.c(169,36): warning C4311: 'type cast': pointer truncation from 'HANDLE' to 'DWORD'
-     Creating library D:\Cheat-Engine-DMA-Plugin\x64\Release\CE-DMAPlugin.lib and object D:\Cheat-Engine-DMA-Plugin\x64\Release\CE-DMAPlugin.exp
-  Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 22 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  CE-DMAPlugin.vcxproj -> D:\Cheat-Engine-DMA-Plugin\x64\Release\CE-DMAPlugin.dll
+﻿
