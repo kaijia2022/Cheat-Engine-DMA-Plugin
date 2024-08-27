@@ -117,7 +117,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>lua53-64.lib;user32.lib;vmm.lib;leechcore.lib</AdditionalDependencies>
+      <AdditionalDependencies>lua53-32.lib;lua53-64.lib;user32.lib;vmm.lib;leechcore.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)CE-DMAPlugin.dll</OutputFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <ImportLibrary>$(OutDir)CE-DMAPlugin.lib</ImportLibrary>
@@ -139,7 +139,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>lua53-64.lib;user32.lib;vmm.lib;leechcore.lib</AdditionalDependencies>
+      <AdditionalDependencies>lua53-32.lib;lua53-64.lib;user32.lib;vmm.lib;leechcore.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)CE-DMAPlugin.dll</OutputFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <ImportLibrary>$(OutDir)CE-DMAPlugin.lib</ImportLibrary>

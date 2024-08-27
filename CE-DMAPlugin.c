@@ -51,7 +51,7 @@ BOOL __stdcall CEPlugin_GetVersion(PPluginVersion pv, int sizeofpluginversion)
 	Exported.ShowMessage("Called from lua");
 	lua_pushinteger(L, 123);
 	return 1;
-*/
+}*/
 
 void hookFunctions() {
 
@@ -118,6 +118,10 @@ BOOL __stdcall CEPlugin_InitializePlugin(PExportedFunctions ef , int pluginid)
 		Exported.ShowMessage("Failure to register DMAPlugin");
 		return FALSE;
 	}	
+
+	//lua_State* lua_state = ef->GetLuaState();
+
+	//lua_register(lua_state, "pluginExample", lua_pluginExample);
 
 	Exported.ShowMessage("The \"DMA\" plugin got enabled");
 	

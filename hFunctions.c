@@ -13,7 +13,6 @@ QWORD previousAoQ = 0; //Address of Query
 unsigned int procIdx = 0;
 unsigned int moduleIdx = 0;
 unsigned int vadIdx = 0;
-unsigned int lastCommittedIdx = 0;
 BOOL vadMapInitialized = FALSE;
 BOOL vadMapUpdated = FALSE;
 
@@ -184,7 +183,6 @@ BOOL _stdcall hWriteProcessMemory(HANDLE hProcess, LPCVOID lpBaseAddress, LPVOID
     return result;
 }
 
-
 BOOL GetNextVaStartAddr() {
     if (!pVadMap) {
         return 0;
@@ -235,10 +233,11 @@ DWORD __stdcall hVirtualQueryEx(HANDLE hProcess, LPCVOID lpAddress, PMEMORY_BASI
     //printf("Address Queried: %llu\n", (ULONG64)lpAddress);
     PVMMDLL_MAP_VADENTRY pVadMapEntry;
 
-    BOOL result = GetNextVaStartAddr();
-    if (!result) {
+    BOOL hasNextCommmitedRegion = GetNextVaStartAddr();
+    if (!hasNextCommmitedRegion) {
         return 0;
     }
+
     if ((ULONG64)lpAddress < nextVaStart) {
         lpBuffer->RegionSize = nextVaStart - (ULONG64)lpAddress;
         lpBuffer->BaseAddress = (PVOID)(ULONG64)lpAddress;
@@ -246,10 +245,9 @@ DWORD __stdcall hVirtualQueryEx(HANDLE hProcess, LPCVOID lpAddress, PMEMORY_BASI
         lpBuffer->State = MEM_FREE;
         lpBuffer->Type = MEM_PRIVATE;
         //printf("No Section located, increment query address: BaseAddress = %llu, RegionSize = %llu\n", (ULONG64)lpAddress, lpBuffer->RegionSize);
-        return sizeof(lpBuffer);
+        return sizeof(*lpBuffer);
     }
-
-
+    
     for (unsigned int i = vadIdx; i < pVadMap->cMap; i++) {
         pVadMapEntry = &pVadMap->pMap[i];
         if (!pVadMapEntry->CommitCharge) {
@@ -265,7 +263,7 @@ DWORD __stdcall hVirtualQueryEx(HANDLE hProcess, LPCVOID lpAddress, PMEMORY_BASI
 
             vadIdx = i + 1;
 
-            return sizeof(lpBuffer);
+            return sizeof(*lpBuffer);
         }
     }
     
