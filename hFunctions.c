@@ -149,11 +149,11 @@ BOOL __stdcall hReadProcessMemory(HANDLE hProcess, LPCVOID lpBaseAddress, LPVOID
     BOOL result;
     result = VMMDLL_MemReadEx(hVMM, (DWORD)hProcess, (ULONG64)lpBaseAddress, (PBYTE)lpBuffer, (DWORD)nSize, (PDWORD)lpNumberOfBytesRead, VMMDLL_FLAG_NOCACHE);
 
-    if (*lpNumberOfBytesRead == nSize) {
+    /*if (*lpNumberOfBytesRead == nSize)
         return result;
-    }
     else
-        return FALSE;
+        return FALSE;*/
+    return result;
 }
 
 /**
@@ -245,6 +245,24 @@ DWORD __stdcall hVirtualQueryEx(HANDLE hProcess, LPCVOID lpAddress, PMEMORY_BASI
         lpBuffer->State = MEM_FREE;
         lpBuffer->Type = MEM_PRIVATE;
         //printf("No Section located, increment query address: BaseAddress = %llu, RegionSize = %llu\n", (ULONG64)lpAddress, lpBuffer->RegionSize);
+        /*if (vadIdx == 0) {
+            return sizeof(*lpBuffer);
+        }
+        for (unsigned int i = 0; i < vadIdx; i++) {
+            pVadMapEntry = &pVadMap->pMap[i];
+            if (!pVadMapEntry->CommitCharge) {
+                continue;
+            }
+            if ((ULONG64)lpAddress >= pVadMapEntry->vaStart && (ULONG64)lpAddress <= pVadMapEntry->vaEnd) {
+                lpBuffer->BaseAddress = (PVOID)pVadMapEntry->vaStart;
+                lpBuffer->RegionSize = pVadMapEntry->vaEnd + 1 - pVadMapEntry->vaStart;
+                lpBuffer->Type = VadMap_Type(pVadMapEntry);
+                lpBuffer->Protect = VadMap_Protection(pVadMapEntry);
+                lpBuffer->State = VadMap_State(pVadMapEntry);
+
+                return sizeof(*lpBuffer);
+            }
+        }*/
         return sizeof(*lpBuffer);
     }
     
